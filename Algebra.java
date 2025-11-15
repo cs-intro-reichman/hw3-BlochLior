@@ -54,7 +54,6 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// pow is messed up
 		int result = 1;
 		if (n == 0) {
 			return result;
@@ -89,32 +88,9 @@ public class Algebra {
 	
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// see 3-1 4th slide;
-		// go brute force, no need for algorithm; assume that 
-		// the int fits to a sqrt.
-		// no need, can just go one by one, and then whenever i reach result,
-		// i can just choose the lower option.
-
-		// or go bisect
-		// sqrt is messed up it thinks it's always 1
-		// now its stuck - just copy the idea either of raphson newton,
-		// or just a long brute force option that just remembers the 
-		// two last values, and if last value is wrong - take one afterwards.
-		// there is no prohibition from using casting, so i'm okay with using casting
-		// to make it more similar to the sqrt they have in the slide. 
-		// but then i will have problems with using the int ---
-		
-		
-		// might need to go for some half measure
-		// <<..go brute, and if == then good;
-		// <<..if not ==, then go result-- and return;
 		int g = 1;
-		boolean controlWhile = true;
-		while (g <= x && controlWhile) {
+		while (g <= x && times(g, g) <= x) {
 			g = plus(g, 1);
-			if (times(g, g) > x) {
-				break;
-			}
 		}
 		if (g > x) {
 			System.out.println("Decrease increment");
