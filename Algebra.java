@@ -25,17 +25,30 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		for (int i = 0; i < x2; i++) {
-			x1++;
+		if (x2 < 0) {
+			for (int i = 0; i > x2; i--) {
+				x1--;
+			}
+		} else {
+			for (int i = 0; i < x2; i++) {
+				x1++;
+			}
 		}	
 		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		for (int i = 0; i < x2; i++) {
-			x1--;
+		if (x2 < 0) {
+			for (int i = 0; i > x2; i--) {
+				x1++;
+			}
+		} else {
+			for (int i = 0; i < x2; i++) {
+				x1--;
+			}
 		}
+		
 		return x1;
 	}
 
@@ -45,9 +58,13 @@ public class Algebra {
 		if (x2 == 0 || x1 == 0) {
 			return product;
 		} else {
-			for (int i = 0; i < x2; i++) {
+			for (int i = 0; i < Math.abs(x2); i++) {
 				product = plus(product, x1);
 			}
+		}
+		boolean negativeProduct = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
+		if (negativeProduct) {
+			product = minus(0, product);
 		}
 		return product;
 	}
@@ -68,13 +85,17 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		int count = 0; 
-		if (x2 > x1) {
+		if (Math.abs(x2) > Math.abs(x1)) {
 			return 0;
 		} 
 		int current = x1;
-		while (current >= x2) {
+		while (current >= Math.abs(x2)) {
 			count++;
-			current = minus(current, x2);
+			current = minus(current, Math.abs(x2));
+		}
+		boolean negativeCount = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
+		if (negativeCount) {
+			count = minus(0, count);
 		}
 		return count;
 	}
@@ -92,9 +113,9 @@ public class Algebra {
 		while (g <= x && times(g, g) <= x) {
 			g = plus(g, 1);
 		}
-		if (g > x) {
-			System.out.println("Decrease increment");
-		}
+		//if (g > x) {
+		//	System.out.println("Decrease increment");
+		//}
 		if (times(g, g) > x) {
 			g = minus(g, 1);
 			//System.out.println("returned inside if statement");
