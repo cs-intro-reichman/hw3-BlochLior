@@ -63,6 +63,7 @@ public class LoanCalc {
         double l = 1.0;
 		double h = loan;
 		double g = (l+h)/2;
+		iterationCounter = 0;
 		while (Math.abs(h-l)> epsilon) {
 			iterationCounter++;
 			double lVal = endBalance(loan, rate, n, l);
