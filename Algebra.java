@@ -25,43 +25,111 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 < 0) {
+			for (int i = 0; i > x2; i--) {
+				x1--;
+			}
+		} else {
+			for (int i = 0; i < x2; i++) {
+				x1++;
+			}
+		}	
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		if (x2 < 0) {
+			for (int i = 0; i > x2; i--) {
+				x1++;
+			}
+		} else {
+			for (int i = 0; i < x2; i++) {
+				x1--;
+			}
+		}
+		
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int product = 0;
+		if (x2 == 0 || x1 == 0) {
+			return product;
+		} else {
+			for (int i = 0; i < Math.abs(x2); i++) {
+				product = plus(product, x1);
+			}
+		}
+		boolean negativeProduct = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
+		if (negativeProduct) {
+			product = minus(0, product);
+		}
+		return product;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int result = 1;
+		if (n == 0) {
+			return result;
+		} else {
+			for (int i = 1; i <= n; i++) {
+				result = times(result, x);
+			}
+		}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int count = 0; 
+		if (Math.abs(x2) > Math.abs(x1)) {
+			return 0;
+		} 
+		if (x2 == 0) {
+			System.out.println("Don't divide by 0 please");
+			return 0;
+		}
+		int current = x1;
+		while (current >= Math.abs(x2)) {
+			count++;
+			current = minus(current, Math.abs(x2));
+		}
+		boolean negativeCount = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
+		if (negativeCount) {
+			count = minus(0, count);
+		}
+		return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int floor = div(x1, x2);
+		int exactDivisionFrom = times(floor, x2);
+		return (minus(x1, exactDivisionFrom));
 	}	
-
+	
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		if (x < 0) {
+			System.out.println("don't negative root, too complex");
+			return -1;
+		}
+		int g = 0;
+		while (g <= x && times(g, g) <= x) {
+			g = plus(g, 1);
+		}
+		//if (g > x) {
+		//	System.out.println("Decrease increment");
+		//}
+		if (times(g, g) > x) {
+			g = minus(g, 1);
+			//System.out.println("returned inside if statement");
+			return g;
+		}
+		//System.out.println("printed outside if statement");
+		return g;
 	}	  	  
 }
