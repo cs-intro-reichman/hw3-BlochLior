@@ -88,6 +88,10 @@ public class Algebra {
 		if (Math.abs(x2) > Math.abs(x1)) {
 			return 0;
 		} 
+		if (x2 == 0) {
+			System.out.println("Don't divide by 0 please");
+			return 0;
+		}
 		int current = x1;
 		while (current >= Math.abs(x2)) {
 			count++;
