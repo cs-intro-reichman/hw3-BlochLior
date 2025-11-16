@@ -113,7 +113,11 @@ public class Algebra {
 	
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int g = 1;
+		if (x < 0) {
+			System.out.println("don't negative root, too complex");
+			return -1;
+		}
+		int g = 0;
 		while (g <= x && times(g, g) <= x) {
 			g = plus(g, 1);
 		}
